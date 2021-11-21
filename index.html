@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="paginacionApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Paginación de lado del servidor</title>
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/custom.css">
+	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+
+	<script src="js/lib/angular.min.js"></script>
+
+	<script src="angular/app.js"></script>
+	<script src="angular/servicios.js"></script>
+	<script src="angular/controladores.js"></script>
+	
+
+</head>
+<body>
+	
+	<div class="container" ng-controller="paisesCtrl">
+		
+		<h1>Paginación <small>en servidor</small></h1>	
+		<hr>
+
+		<div class="alert alert-info" ng-show="paises.load">
+			<strong>Cargando</strong> espere por favor....
+		</div>
+
+		<pre>{{ paises |json }}</pre>
+
+		<button class="btn btn-default" ng-click="goToFirstPage()"><i class="fa fa-angle-double-left"></i></button>
+		<button class="btn btn-default botNum" ng-click="goToPage(num)" ng-repeat="num in arrPagination" >{{ num }}</button>
+		<button class="btn btn-default" ng-click="goToLastPage()"><i class="fa fa-angle-double-right"></i></button>
+
+		<table class="table table-striped table-hover">
+			<thead>
+				<th>ID</th>
+				<th>ISO</th>
+				<th>Nombre</th>
+			</thead>
+			<tbody>
+				<tr ng-repeat="pais in paises">
+					<td>{{ pais.id }}</td>
+					<td>{{ pais.iso }}</td>
+					<td>{{ pais.name }}</td>
+				</tr>
+			</tbody>
+		</table>
+
+	
+
+
+	</div>
+
+</body>
+</html>
